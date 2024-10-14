@@ -272,6 +272,7 @@ def text_statistics(filename):
 text_statistics('aaa.txt')
 ```
 ### Результат.
+![image](https://github.com/user-attachments/assets/a0deefea-5151-4e71-8289-0518212c943d)
 
 ## Выводы
 Программа выводит количество букв, слов и строк из файла. 
@@ -281,17 +282,28 @@ text_statistics('aaa.txt')
 •	Запрещенные слова:
 hello email python the exam wor is
 •	Предложение для проверки:
-Hello, world! Python IS the programming language of thE future. My EMAIL is....
+Hello, world! Python IS the programming language of thE future. My EMAIL is ksusha.katkova2468@yandex.ru
 PYTHON is awesome!!!!
 •	Ожидаемый результат:
 *****, ***ld! ****** ** *** programming language of *** future. My
-***** **....
+***** ** ksusha.katkova2468@yandex.ru
 ****** ** awesome!!!!
 
 ```python
+import re
+def censor_text(input_text, banned_words):
+    for word in banned_words:
+        input_text = re.sub(word, '*' * len(word), input_text, flags=re.IGNORECASE)
+    return input_text
+with open('aaa.txt', 'r', encoding='utf-8') as file:
+    banned_words = file.read().strip().split()
+sentence = input("Введите предложение для проверки: ")
+censored_sentence = censor_text(sentence, banned_words)
+print(censored_sentence)
 
 ```
 ### Результат.
+![image](https://github.com/user-attachments/assets/709998de-6c74-45e7-96b2-7305cda7a1d3)
 
 ## Выводы
 Программа заменяет запрещенные слова в вводимом предложении на звездочки.
@@ -301,14 +313,20 @@ PYTHON is awesome!!!!
 Подсчет строк в файле и вывод их на экран.
 
 ```python
-
+def print_lines(filename):
+    with open(filename, 'r', encoding='utf-8') as file:
+        for line_num, line in enumerate(file, 1):
+            print(f"{line_num}: {line.strip()}")
+print_lines('aaa.txt')
 ```
 ### Результат.
+![image](https://github.com/user-attachments/assets/8018284b-1d06-4085-bff7-39c9bd6f6240)
 
 ## Выводы
-
+Программа выводит строки файла с их номерами.
 
 ## Общие выводы по теме
+
 1. Основные операции с файлами
 Были изучены методы для работы с файлами. Основные операции включают:
 - Чтение (read(), readline(), readlines()): позволяет загружать данные из файла в переменные для обработки.
